@@ -3,11 +3,22 @@ import { motion, AnimatePresence } from "framer-motion";
 import { StarryBackground } from "@/components/StarryBackground";
 import { IntroScreen } from "@/components/IntroScreen";
 import { MusicPlayer } from "@/components/MusicPlayer";
+import { HangingImages } from "@/components/HangingImages";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Heart, Stars, Infinity as InfinityIcon, ArrowDown, Sparkles } from "lucide-react";
 import { useCreateLoveLog } from "@/hooks/use-love-logs";
 import { useToast } from "@/hooks/use-toast";
+
+// Default hanging images - will use placeholder images
+const hangingImagesData = [
+  { src: "/images/funny moddy.jpeg", alt: "Memory 1" },
+  { src: "/images/ocassion ose.jpeg", alt: "Memory 2" },
+  { src: "/images/same ocassion.jpeg", alt: "Memory 3" },
+  { src: "/images/classy pose.jpeg", alt: "Memory 4" },
+  { src: "/images/handsome profile.jpeg", alt: "Memory 5" },
+  { src: "/images/universe bg.jpeg", alt: "Memory 6" },
+];
 
 // --- STEPS ---
 // -1: Intro (Will you be mine?)
@@ -55,6 +66,23 @@ function StepUniverse({ onNext }: { onNext: () => void }) {
       transition={{ duration: 1.5 }}
       className="relative z-10 flex flex-col items-center justify-center min-h-screen p-4 text-center"
     >
+      {/* Background Image for Universe Intro */}
+      <div className="fixed inset-0 z-0 pointer-events-none">
+        <div
+          className="absolute inset-0 opacity-30"
+          style={{
+            backgroundImage: "url('/images/cute profile.jpeg')",
+            backgroundSize: "85% auto",
+            backgroundPosition: "center center",
+            backgroundRepeat: "no-repeat",
+          }}
+        />
+        <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/40 to-black/80" />
+      </div>
+
+      {/* Hanging Images */}
+      <HangingImages images={hangingImagesData} count={6} />
+
       <div className="mb-12 flex flex-col items-center max-w-4xl">
         <motion.div
           initial={{ scale: 0, opacity: 0 }}
@@ -96,7 +124,7 @@ function StepUniverse({ onNext }: { onNext: () => void }) {
         <Button
           onClick={onNext}
           size="lg"
-          className="bg-white/10 hover:bg-white/20 text-white border border-white/30 backdrop-blur-md rounded-full px-10 py-8 text-xl transition-all duration-300 hover:scale-105 hover:shadow-[0_0_30px_rgba(255,255,255,0.2)] group"
+          className="bg-white/10 hover:bg-white/20 text-white border border-white/30 backdrop-blur-md rounded-full px-6 py-5 text-lg md:px-10 md:py-8 md:text-xl transition-all duration-300 hover:scale-105 hover:shadow-[0_0_30px_rgba(255,255,255,0.2)] group"
         >
           <Stars className="mr-3 h-6 w-6 text-yellow-200 group-hover:rotate-180 transition-transform duration-700" />
           Begin Our Story
@@ -117,6 +145,24 @@ function StepStory({ onNext }: { onNext: () => void }) {
       exit={{ opacity: 0, y: -50 }}
       className="relative z-10 w-full min-h-screen overflow-y-auto no-scrollbar scroll-smooth"
     >
+      {/* Background Image with Stars */}
+      <div className="fixed inset-0 z-0 pointer-events-none">
+        <div 
+          className="absolute inset-0 opacity-30"
+          style={{ 
+            backgroundImage: "url('/images/asthtic.jpeg')",
+            backgroundSize: '100vh 100vw',
+            backgroundPosition: 'center center',
+            backgroundRepeat: 'no-repeat',
+            transform: 'rotate(90deg)'
+          }}
+        />
+        <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/40 to-black/80" />
+      </div>
+
+      {/* Hanging Images */}
+      <HangingImages images={hangingImagesData} count={6} />
+
       {/* Scroll indicator - only visible initially */}
       <motion.div 
         initial={{ opacity: 0 }}
@@ -137,11 +183,10 @@ function StepStory({ onNext }: { onNext: () => void }) {
             whileInView={{ opacity: 1, rotate: -2, x: 0 }}
             viewport={{ once: true, margin: "-100px" }}
             transition={{ duration: 0.8 }}
-            className="w-72 h-96 bg-white/5 border-[6px] border-white p-2 rounded-sm shadow-2xl flex-shrink-0 relative group"
+            className="w-[80vw] max-w-[18rem] aspect-[3/4] md:w-72 md:h-96 bg-white/5 border-[6px] border-white p-2 rounded-sm shadow-2xl flex-shrink-0 relative group"
           >
              <div className="w-full h-full bg-neutral-900 flex items-center justify-center overflow-hidden">
-                <span className="text-white/30 text-sm font-medium">Photo 1 Placeholder</span>
-                {/* Image would go here: <img src="..." className="w-full h-full object-cover" /> */}
+                <img src="/images/girlish pose.jpeg" className="w-full h-full object-cover" alt="Our Story" />
              </div>
              {/* Tape effect */}
              <div className="absolute -top-4 left-1/2 -translate-x-1/2 w-32 h-8 bg-white/20 backdrop-blur-sm rotate-1" />
@@ -173,10 +218,10 @@ function StepStory({ onNext }: { onNext: () => void }) {
             whileInView={{ opacity: 1, rotate: 3, x: 0 }}
             viewport={{ once: true, margin: "-100px" }}
             transition={{ duration: 0.8 }}
-            className="w-72 h-96 bg-white/5 border-[6px] border-white p-2 rounded-sm shadow-2xl flex-shrink-0 relative"
+            className="w-[80vw] max-w-[18rem] aspect-[3/4] md:w-72 md:h-96 bg-white/5 border-[6px] border-white p-2 rounded-sm shadow-2xl flex-shrink-0 relative"
           >
              <div className="w-full h-full bg-neutral-900 flex items-center justify-center overflow-hidden">
-                <span className="text-white/30 text-sm font-medium">Photo 2 Placeholder</span>
+                <img src="/images/loveyou imgae.jpeg" className="w-full h-full object-cover" alt="Love You" />
              </div>
              {/* Tape effect */}
              <div className="absolute -top-4 left-1/2 -translate-x-1/2 w-32 h-8 bg-white/20 backdrop-blur-sm -rotate-2" />
@@ -211,7 +256,7 @@ function StepStory({ onNext }: { onNext: () => void }) {
             className="w-full max-w-md aspect-[4/3] bg-white/5 border-[8px] border-white p-3 rounded-sm shadow-2xl relative"
           >
              <div className="w-full h-full bg-neutral-900 flex items-center justify-center overflow-hidden">
-                <span className="text-white/30 text-sm font-medium">Photo 3 Placeholder</span>
+                <img src="/images/shadi image.jpeg" className="w-full h-full object-cover" alt="Wedding" />
              </div>
              <div className="absolute -bottom-12 right-4 text-6xl rotate-12 drop-shadow-lg">💍</div>
           </motion.div>
@@ -236,7 +281,7 @@ function StepStory({ onNext }: { onNext: () => void }) {
               <Button
                 onClick={onNext}
                 size="lg"
-                className="mt-8 bg-primary hover:bg-primary/80 text-white rounded-full px-12 py-8 text-xl shadow-lg shadow-primary/30 transition-all hover:scale-105"
+                className="mt-8 bg-primary hover:bg-primary/80 text-white rounded-full px-8 py-6 text-lg md:px-12 md:py-8 md:text-xl shadow-lg shadow-primary/30 transition-all hover:scale-105"
               >
                 Continue Journey
               </Button>
@@ -320,6 +365,22 @@ function StepCalculator({ onNext }: { onNext: () => void }) {
       exit={{ opacity: 0, scale: 1.1 }}
       className="relative z-10 flex flex-col items-center justify-center min-h-screen p-6"
     >
+      {/* Background Image with Stars */}
+      <div className="fixed inset-0 z-0 pointer-events-none">
+        <div 
+          className="absolute inset-0 opacity-30"
+          style={{ 
+            backgroundImage: "url('/images/same ocassion.jpeg')",
+            backgroundSize: 'cover',
+            backgroundPosition: 'center 30%',
+            backgroundRepeat: 'no-repeat'
+          }}
+        />
+        <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/40 to-black/80" />
+      </div>
+
+      {/* Hanging Images */}
+      <HangingImages images={hangingImagesData} count={6} />
       <AnimatePresence>
         {isGenieDead && (
           <motion.div
@@ -457,11 +518,28 @@ function StepFinal() {
     <motion.div
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
-      transition={{ duration: 2 }}
+      exit={{ opacity: 0, scale: 1.1 }}
       className="relative z-10 flex flex-col items-center justify-center min-h-screen p-6 text-center"
     >
+      {/* Background Image with Stars */}
+      <div className="fixed inset-0 z-0 pointer-events-none">
+        <div 
+          className="absolute inset-0 opacity-30"
+          style={{ 
+            backgroundImage: "url('/images/propose image.jpeg')",
+            backgroundSize: '100% auto',
+            backgroundPosition: 'center center',
+            backgroundRepeat: 'no-repeat'
+          }}
+        />
+        <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/40 to-black/80" />
+      </div>
+
+      {/* Hanging Images */}
+      <HangingImages images={hangingImagesData} count={6} />
+
       <div className="absolute inset-0 bg-gradient-to-t from-primary/20 via-transparent to-transparent pointer-events-none" />
-      
+
       <motion.div
         initial={{ y: 30, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
@@ -469,13 +547,13 @@ function StepFinal() {
         className="max-w-4xl space-y-12 flex flex-col items-center"
       >
         <motion.div 
-          className="w-80 h-60 md:w-96 md:h-72 p-3 bg-white/10 backdrop-blur-md border-[6px] border-white/20 rounded-lg shadow-2xl overflow-hidden relative group"
+          className="w-[85vw] max-w-[20rem] aspect-[4/3] md:w-96 md:h-72 p-3 bg-white/10 backdrop-blur-md border-[6px] border-white/20 rounded-lg shadow-2xl overflow-hidden relative group"
           initial={{ rotate: -2 }}
           animate={{ rotate: 2 }}
           transition={{ repeat: Infinity, repeatType: "reverse", duration: 4, ease: "easeInOut" }}
         >
            <div className="w-full h-full bg-neutral-900 flex items-center justify-center relative">
-              <span className="text-white/40 text-sm font-medium">Final Photo Placeholder</span>
+              <img src="/images/after wedding.jpeg" className="w-full h-full object-cover" alt="After Wedding" />
               <div className="absolute inset-0 bg-gradient-to-tr from-primary/20 to-transparent pointer-events-none" />
            </div>
            <div className="absolute top-4 right-4 animate-pulse">
@@ -487,7 +565,7 @@ function StepFinal() {
           <h1 className="text-4xl md:text-7xl font-bold leading-tight font-display tracking-tight text-white mb-4">
             If love was code,<br />
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-pink-400 via-primary to-purple-400 animate-gradient bg-300%">
-              you’d be my infinite loop.
+              you’d be my infinite for each loop.
             </span>
           </h1>
           <div className="w-32 h-1 bg-primary mx-auto rounded-full opacity-50" />

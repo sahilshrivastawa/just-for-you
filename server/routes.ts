@@ -9,9 +9,11 @@ export async function registerRoutes(
   httpServer: Server,
   app: Express
 ): Promise<Server> {
-  // Setup Auth
-  await setupAuth(app);
-  registerAuthRoutes(app);
+  // Setup Auth only if running on Replit
+  if (process.env.REPL_ID) {
+    await setupAuth(app);
+    registerAuthRoutes(app);
+  }
 
   // Love Logs API
   app.post(api.loveLogs.create.path, async (req, res) => {
