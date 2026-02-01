@@ -1,0 +1,102 @@
+I am building a romantic interactive React website called "Infinite Love Simulator".
+
+Tech stack:
+- React.js
+- Tailwind CSS
+- Framer Motion (animations)
+- react-tsparticles (stars background)
+
+The website is a cinematic emotional journey with 4 sections in sequence:
+
+-----------------------------------
+SECTION 1 — UNIVERSE INTRO
+-----------------------------------
+Full-screen dark background with animated stars.
+
+Center text:
+"In this infinite universe… I found you."
+
+Button:
+"Begin Our Story"
+
+When button is clicked → go to Love Story section.
+
+-----------------------------------
+SECTION 2 — SCROLL LOVE STORY
+-----------------------------------
+A vertical scroll storytelling page with 3 full-screen sections.
+
+Scene 1 text:
+"First, I noticed your smile 😊"
+
+Scene 2 text:
+"Then I fell for your heart ❤️"
+
+Scene 3 text:
+"And one day, I married my best friend 💍"
+
+After final scene → show a "Continue" button that navigates to Love Calculator.
+
+Add smooth fade or slide animations while scrolling.
+
+-----------------------------------
+SECTION 3 — LOVE CALCULATOR (EMOTIONAL TWIST)
+-----------------------------------
+UI:
+Two input fields:
+- Your Name
+- Her Name
+
+Button:
+"Calculate Love"
+
+When clicked → show result screen with animation:
+
+"Love cannot be calculated…
+But with you, it's ∞ ❤️"
+
+Then show button:
+"See Final Message"
+
+-----------------------------------
+SECTION 4 — FINAL MESSAGE
+-----------------------------------
+Full-screen soft romantic background.
+
+Text:
+
+"If love was code,
+you’d be my infinite loop ❤️
+Happy Valentine’s Day, My Wife."
+
+Add floating heart particles or confetti animation.
+
+-----------------------------------
+APP FLOW
+-----------------------------------
+Use React state to switch between sections instead of routing.
+
+step = 0 → Universe
+step = 1 → Love Story
+step = 2 → Calculator
+step = 3 → Final Message
+
+-----------------------------------
+FOLDER STRUCTURE
+-----------------------------------
+
+src/
+  components/
+    StarsBackground.jsx
+    LoveStoryScroll.jsx
+    LoveCalculator.jsx
+    FinalMessage.jsx
+  App.js
+
+-----------------------------------
+EXTRA REQUIREMENTS
+-----------------------------------
+- Use Tailwind for styling
+- Use Framer Motion for fade/slide animations
+- Make everything mobile responsive
+- Add smooth transitions between steps

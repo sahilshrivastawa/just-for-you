@@ -1,18 +1,21 @@
-import { sql } from "drizzle-orm";
-import { pgTable, text, varchar } from "drizzle-orm/pg-core";
+import { pgTable, text, serial, timestamp } from "drizzle-orm/pg-core";
 import { createInsertSchema } from "drizzle-zod";
 import { z } from "zod";
 
-export const users = pgTable("users", {
-  id: varchar("id").primaryKey().default(sql`gen_random_uuid()`),
-  username: text("username").notNull().unique(),
-  password: text("password").notNull(),
+// Export auth models so they are included in migrations
+export * from "./models/auth";
+
+export const loveLogs = pgTable("love_logs", {
+  id: serial("id").primaryKey(),
+  name1: text("name1").notNull(),
+  name2: text("name2").notNull(),
+  createdAt: timestamp("created_at").defaultNow(),
 });
 
-export const insertUserSchema = createInsertSchema(users).pick({
-  username: true,
-  password: true,
+export const insertLoveLogSchema = createInsertSchema(loveLogs).pick({
+  name1: true,
+  name2: true,
 });
 
-export type InsertUser = z.infer<typeof insertUserSchema>;
-export type User = typeof users.$inferSelect;
+export type InsertLoveLog = z.infer<typeof insertLoveLogSchema>;
+export type LoveLog = typeof loveLogs.$inferSelect;
